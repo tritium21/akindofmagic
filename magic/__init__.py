@@ -17,12 +17,15 @@ Usage:
 
 """
 
-import sys
-import glob
-import os.path
+import contextlib
 import ctypes
 import ctypes.util
+import os
+import os.path
+import platform
+import sys
 import threading
+
 
 from ctypes import c_char_p, c_int, c_size_t, c_void_p
 
@@ -31,6 +34,11 @@ class MagicException(Exception):
     def __init__(self, message):
         super(MagicException, self).__init__(message)
         self.message = message
+
+def windows_path():
+    path = os.path.dirname(os.path.abspath(__file__))
+    arch = platform.architecture()[0]
+    return os.path.join(path, 'win64' if arch == '64bit' else 'win32')
 
 
 class Magic:
@@ -63,7 +71,9 @@ class Magic:
 
         self.cookie = magic_open(self.flags)
         self.lock = threading.Lock()
-        
+
+        if not magic_file and sys.platform == 'win32':
+            magic_file = os.path.join(windows_path(), 'magic.mgc')
         magic_load(self.cookie, magic_file)
 
     def from_buffer(self, buf):
@@ -143,37 +153,55 @@ def from_buffer(buffer, mime=False):
     return m.from_buffer(buffer)
 
 
+@contextlib.contextmanager
+def extend_path(path=None):
+    if path:
+        oldpath = os.environ['PATH']
+        os.environ['PATH'] = '{};{}'.format(str(path), os.environ['PATH'])
+    yield
+    if path:
+        os.environ['PATH'] = oldpath
 
-
-libmagic = None
-# Let's try to find magic or magic1
-dll = ctypes.util.find_library('magic') or ctypes.util.find_library('magic1') or ctypes.util.find_library('cygmagic-1')
-
-# This is necessary because find_library returns None if it doesn't find the library
-if dll:
-    libmagic = ctypes.CDLL(dll)
-
-if not libmagic or not libmagic._name:
-    windows_dlls = ['magic1.dll','cygmagic-1.dll']
-    platform_to_lib = {'darwin': ['/opt/local/lib/libmagic.dylib',
-                                  '/usr/local/lib/libmagic.dylib'] +
-                         # Assumes there will only be one version installed
-                         glob.glob('/usr/local/Cellar/libmagic/*/lib/libmagic.dylib'),
-                       'win32': windows_dlls,
-                       'cygwin': windows_dlls,
-                       'linux': ['libmagic.so.1'],    # fallback for some Linuxes (e.g. Alpine) where library search does not work
-                      }
-    platform = 'linux' if sys.platform.startswith('linux') else sys.platform
-    for dll in platform_to_lib.get(platform, []):
+def find_magic():
+    dll = (
+        ctypes.util.find_library('magic') or
+        ctypes.util.find_library('magic1') or
+        ctypes.util.find_library('cygmagic-1')
+    )
+    if dll:
+        return ctypes.CDLL(dll)
+    library_path = []
+    system_path = None
+    _platform = sys.platform
+    if _platform == 'win32':
+        lp = windows_path()
+        if os.path.exists(lp):
+            system_path = lp
+            library_path = ['magic1.dll']
+    elif _platform == 'cygwin':
+        library_path = ['cygmagic-1.dll']
+    elif _platform == 'darwin':
+        library_path = [
+            '/opt/local/lib/libmagic.dylib',
+            '/usr/local/lib/libmagic.dylib',
+        ]
+        library_path.extend(
+            glob.glob('/usr/local/Cellar/libmagic/*/lib/libmagic.dylib')
+        )
+    elif _platform.startswith('linux'):
+        library_path = ['libmagic.so.1']
+    if not library_path:
+        raise ImportError("Platform not supported")
+    for dll in library_path:
         try:
-            libmagic = ctypes.CDLL(dll)
-            break
+            with extend_path(system_path):
+                return ctypes.CDLL(dll)
         except OSError:
             pass
-
-if not libmagic or not libmagic._name:
-    # It is better to raise an ImportError since we are importing magic module
     raise ImportError('failed to find libmagic.  Check your installation')
+
+libmagic = find_magic()
+
 
 magic_t = ctypes.c_void_p
 
