@@ -1,2 +1,9 @@
+*.pyc
+__pycache__/
+dist
+[B|b]uild
 deb_dist
 python_magic.egg-info
+/env32
+/env64
+/.vs
