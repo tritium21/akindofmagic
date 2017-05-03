@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(name='akindofmagic',
       description='File type identification using libmagic',
@@ -11,7 +11,7 @@ setup(name='akindofmagic',
       maintainer_email='tritium@sdamon.com',
       url="http://github.com/tritium21/akindofmagic",
       version='0.4.14',
-      py_package=['magic'],
+      packages=find_packages(),
       setup_requires=['pytest-runner'],
       tests_require=['pytest'],
       long_description="""This module uses ctypes to access the libmagic file type
