@@ -3,11 +3,13 @@
 
 from setuptools import setup
 
-setup(name='python-magic',
+setup(name='akindofmagic',
       description='File type identification using libmagic',
       author='Adam Hupp',
       author_email='adam@hupp.org',
-      url="http://github.com/ahupp/python-magic",
+      maintainer='Alex Walters',
+      maintainer_email='tritium@sdamon.com',
+      url="http://github.com/tritium21/akindofmagic",
       version='0.4.13',
       py_modules=['magic'],
       long_description="""This module uses ctypes to access the libmagic file type
