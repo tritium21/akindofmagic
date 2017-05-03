@@ -10,10 +10,11 @@ setup(name='akindofmagic',
       maintainer='Alex Walters',
       maintainer_email='tritium@sdamon.com',
       url="http://github.com/tritium21/akindofmagic",
-      version='0.4.14',
+      version='0.4.16',
       packages=find_packages(),
       setup_requires=['pytest-runner'],
       tests_require=['pytest'],
+      include_package_data=True,
       long_description="""This module uses ctypes to access the libmagic file type
 identification library.  It makes use of the local magic database and
 supports both textual and MIME-type output.
