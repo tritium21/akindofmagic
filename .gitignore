@@ -8,3 +8,7 @@ python_magic.egg-info
 /env64
 /.vs
 /resources
+/.cache/v/cache
+/.eggs
+/akindofmagic.egg-info
+/env
