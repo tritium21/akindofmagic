@@ -33,6 +33,7 @@
   <ItemGroup>
     <Content Include=".pylintrc" />
     <Content Include=".travis.yml" />
+    <Content Include="appveyor.yml" />
     <Content Include="LICENSE" />
     <Content Include="magic\win32\magic.mgc" />
     <Content Include="magic\win32\magic1.dll" />
