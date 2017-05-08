@@ -1,5 +1,6 @@
 import unittest
 import os.path
+import io
 
 import magic
 
@@ -18,13 +19,13 @@ class TestMagic(unittest.TestCase):
 
     def test_from_buffer_mime(self):
         expected = 'application/zip'
-        with open(TEST_FILE, 'br') as f:
+        with io.open(TEST_FILE, 'br') as f:
             actual = magic.from_buffer(f.read(), mime=True)
         self.assertEqual(actual, expected)
 
     def test_from_buffer(self):
         expected = 'Zip archive data'
-        with open(TEST_FILE, 'br') as f:
+        with io.open(TEST_FILE, 'br') as f:
             actual = magic.from_buffer(f.read())
         self.assertTrue(actual.startswith(expected))
 
