@@ -29,4 +29,4 @@ class TestMagic(unittest.TestCase):
         self.assertTrue(actual.startswith(expected))
 
 if __name__ == '__main__':
-   unittest.main()
+    unittest.main()

@@ -19,12 +19,20 @@
     <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="magic\libmagic.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="magic\test\test_magic.py" />
     <Compile Include="magic\test\__init__.py" />
+    <Compile Include="magic\utility.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="magic\__init__.py" />
     <Compile Include="setup.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=",travis.yml" />
+    <Content Include=".pylintrc" />
     <Content Include="LICENSE" />
     <Content Include="magic\win32\magic.mgc" />
     <Content Include="magic\win32\magic1.dll" />
