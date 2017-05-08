@@ -8,6 +8,9 @@ import sys
 
 from magic.utility import windows_path, extend_path, MagicException
 
+if sys.version_info[0] >= 3:
+    unicode = str
+
 def find_magic():
     dll = (
         ctypes.util.find_library('magic') or
@@ -70,8 +73,6 @@ def errorcheck_negative_one(result, _, args):
 def coerce_filename(filename):
     if filename is None:
         return None
-    if sys.version_info[0] >= 3:
-        unicode = str
     is_unicode = isinstance(filename, unicode)
     if is_unicode:
         return filename.encode('utf-8')
