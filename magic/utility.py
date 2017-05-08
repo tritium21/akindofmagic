@@ -16,8 +16,6 @@ def extend_path(path=None):
     if path:
         os.environ['PATH'] = oldpath
 
-# return str on python3.  Don't want to unconditionally
-# decode because that results in unicode on python2
 def maybe_decode(s):
     if str == bytes:
         return s

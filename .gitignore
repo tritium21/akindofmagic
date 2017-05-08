@@ -12,3 +12,5 @@ python_magic.egg-info
 /.eggs
 /akindofmagic.egg-info
 /env
+/env35
+/env*

@@ -68,8 +68,6 @@ def errorcheck_negative_one(result, _, args):
     else:
         return result
 
-
-
 def coerce_filename(filename):
     if filename is None:
         return None
