@@ -31,8 +31,8 @@
     <Compile Include="setup.py" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include=",travis.yml" />
     <Content Include=".pylintrc" />
+    <Content Include=".travis.yml" />
     <Content Include="LICENSE" />
     <Content Include="magic\win32\magic.mgc" />
     <Content Include="magic\win32\magic1.dll" />
