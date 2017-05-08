@@ -21,7 +21,7 @@ import sys
 import threading
 
 from magic import libmagic as lm
-from magic.utility import maybe_decode, MagicException
+from magic.utility import maybe_decode, MagicException, windows_path
 
 
 class Magic:
@@ -62,7 +62,7 @@ class Magic:
         self.lock = threading.Lock()
 
         if not magic_file and sys.platform == 'win32':
-            magic_file = lm.windows_path('magic.mgc')
+            magic_file = windows_path('magic.mgc')
         lm.magic_load(self.cookie, magic_file)
 
     def from_buffer(self, buf):
