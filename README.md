@@ -1,5 +1,8 @@
 # akindofmagic
 
+[![Build status](https://ci.appveyor.com/api/projects/status/7yadfn965up6jmqb?svg=true)](https://ci.appveyor.com/project/tritium21/akindofmagic)
+[![Build Status](https://travis-ci.org/tritium21/akindofmagic.svg?branch=master)](https://travis-ci.org/tritium21/akindofmagic)
+
 akindofmagic (fork of python-magic) is a python interface to the libmagic file type
 identification library.  libmagic identifies file types by checking
 their headers according to a predefined list of file types. This
