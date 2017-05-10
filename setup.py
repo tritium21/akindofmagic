@@ -11,7 +11,7 @@ setup(
     maintainer='Alex Walters',
     maintainer_email='tritium@sdamon.com',
     url="http://github.com/tritium21/akindofmagic",
-    version='0.4.18',
+    version='0.4.19',
     packages=find_packages(),
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],
@@ -22,6 +22,11 @@ setup(
     """,
     keywords="mime magic file",
     license="MIT",
+    entry_points={
+        'console_scripts': [
+            'pyfile = magic.executable:main'
+        ]
+    },
     classifiers=[
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
