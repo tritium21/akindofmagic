@@ -20,9 +20,8 @@ import threading
 
 from magic import libmagic as lm
 from magic.utility import maybe_decode, MagicException, windows_path
-from pkg_resources import get_distribution
 
-__version__ = get_distribution('akindofmagic').version
+__version__ = '0.4.19'
 
 class Magic:
     """
