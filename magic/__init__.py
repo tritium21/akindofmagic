@@ -6,15 +6,13 @@ See README for more information.
 Usage:
 
 >>> import magic
->>> magic.from_file("testdata/test.pdf")
+>>> magic.from_file("test.pdf")
 'PDF document, version 1.2'
->>> magic.from_file("testdata/test.pdf", mime=True)
+>>> magic.from_file("test.pdf", mime=True)
 'application/pdf'
->>> magic.from_buffer(open("testdata/test.pdf").read(1024))
+>>> magic.from_buffer(open("test.pdf").read(1024))
 'PDF document, version 1.2'
 >>>
-
-
 """
 
 import sys
@@ -67,13 +65,13 @@ class Magic:
             magic_file = windows_path('magic.mgc')
         lm.magic_load(self.cookie, magic_file)
 
-    def from_buffer(self, buf):
+    def from_buffer(self, buffer):
         """
-        Identify the contents of `buf`
+        Identify the contents of `buffer`
         """
         with self.lock:  #pylint: disable-msg=not-context-manager
             try:
-                return maybe_decode(lm.magic_buffer(self.cookie, buf))
+                return maybe_decode(lm.magic_buffer(self.cookie, buffer))
             except MagicException as e:
                 return self._handle509Bug(e)
 
@@ -121,11 +119,11 @@ def _get_magic_type(mime):
 
 def from_file(filename, mime=False):
     """"
-    Accepts a filename and returns the detected filetype.  Return
+    Accepts a filename and returns the detected file type.  Return
     value is the mimetype if mime=True, otherwise a human readable
     name.
 
-    >>> magic.from_file("testdata/test.pdf", mime=True)
+    >>> magic.from_file("test.pdf", mime=True)
     'application/pdf'
     """
     m = _get_magic_type(mime)
@@ -133,11 +131,11 @@ def from_file(filename, mime=False):
 
 def from_buffer(buffer, mime=False):
     """
-    Accepts a binary string and returns the detected filetype.  Return
+    Accepts a binary string and returns the detected file type.  Return
     value is the mimetype if mime=True, otherwise a human readable
     name.
 
-    >>> magic.from_buffer(open("testdata/test.pdf").read(1024))
+    >>> magic.from_buffer(open("test.pdf").read(1024))
     'PDF document, version 1.2'
     """
     m = _get_magic_type(mime)
