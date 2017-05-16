@@ -24,8 +24,9 @@ def maybe_decode(s):
 def windows_path(filename=None):
     path = os.path.dirname(os.path.abspath(__file__))
     arch = platform.architecture()[0]
-    parts = [path]
-    parts.append('win64' if arch == '64bit' else 'win32')
+    parts = [path, 'data']
     if filename:
         parts.append(filename)
+    else:
+        parts.append('win64' if arch == '64bit' else 'win32')
     return os.path.join(*parts)

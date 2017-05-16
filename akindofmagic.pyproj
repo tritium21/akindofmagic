@@ -38,20 +38,19 @@
     <Content Include=".travis.yml" />
     <Content Include="appveyor.yml" />
     <Content Include="LICENSE" />
-    <Content Include="magic\win32\libgcc_s_dw2-1.dll" />
-    <Content Include="magic\win32\libiconv-2.dll" />
-    <Content Include="magic\win32\libintl-8.dll" />
-    <Content Include="magic\win32\libsystre-0.dll" />
-    <Content Include="magic\win32\libtre-5.dll" />
-    <Content Include="magic\win32\libwinpthread-1.dll" />
-    <Content Include="magic\win32\magic.mgc" />
-    <Content Include="magic\win32\magic1.dll" />
-    <Content Include="magic\win64\libiconv-2.dll" />
-    <Content Include="magic\win64\libintl-8.dll" />
-    <Content Include="magic\win64\libsystre-0.dll" />
-    <Content Include="magic\win64\libtre-5.dll" />
-    <Content Include="magic\win64\magic.mgc" />
-    <Content Include="magic\win64\magic1.dll" />
+    <Content Include="magic\data\win32\libgcc_s_dw2-1.dll" />
+    <Content Include="magic\data\win32\libiconv-2.dll" />
+    <Content Include="magic\data\win32\libintl-8.dll" />
+    <Content Include="magic\data\win32\libsystre-0.dll" />
+    <Content Include="magic\data\win32\libtre-5.dll" />
+    <Content Include="magic\data\win32\libwinpthread-1.dll" />
+    <Content Include="magic\data\magic.mgc" />
+    <Content Include="magic\data\win32\magic1.dll" />
+    <Content Include="magic\data\win64\libiconv-2.dll" />
+    <Content Include="magic\data\win64\libintl-8.dll" />
+    <Content Include="magic\data\win64\libsystre-0.dll" />
+    <Content Include="magic\data\win64\libtre-5.dll" />
+    <Content Include="magic\data\win64\magic1.dll" />
     <Content Include="MANIFEST.in" />
     <Content Include="pytest.ini" />
     <Content Include="README.md" />
@@ -59,10 +58,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="magic\" />
+    <Folder Include="magic\data\" />
     <Folder Include="magic\test\" />
     <Folder Include="magic\test\data\" />
-    <Folder Include="magic\win64\" />
-    <Folder Include="magic\win32\" />
+    <Folder Include="magic\data\win64\" />
+    <Folder Include="magic\data\win32\" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env32\">

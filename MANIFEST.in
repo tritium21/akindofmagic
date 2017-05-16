@@ -1,4 +1,3 @@
 include LICENSE
 recursive-include magic/test/data *
-recursive-include magic/win32 *
-recursive-include magic/win64 *
+recursive-include magic/data *
