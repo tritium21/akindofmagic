@@ -11,7 +11,8 @@
     <OutputPath>.</OutputPath>
     <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <InterpreterId>MSBuild|env64|$(MSBuildProjectFullPath)</InterpreterId>
+    <InterpreterId>
+    </InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
@@ -38,19 +39,12 @@
     <Content Include=".travis.yml" />
     <Content Include="appveyor.yml" />
     <Content Include="LICENSE" />
-    <Content Include="magic\data\win32\libgcc_s_dw2-1.dll" />
-    <Content Include="magic\data\win32\libiconv-2.dll" />
-    <Content Include="magic\data\win32\libintl-8.dll" />
-    <Content Include="magic\data\win32\libsystre-0.dll" />
-    <Content Include="magic\data\win32\libtre-5.dll" />
-    <Content Include="magic\data\win32\libwinpthread-1.dll" />
     <Content Include="magic\data\magic.mgc" />
-    <Content Include="magic\data\win32\magic1.dll" />
-    <Content Include="magic\data\win64\libiconv-2.dll" />
-    <Content Include="magic\data\win64\libintl-8.dll" />
-    <Content Include="magic\data\win64\libsystre-0.dll" />
-    <Content Include="magic\data\win64\libtre-5.dll" />
-    <Content Include="magic\data\win64\magic1.dll" />
+    <Content Include="magic\data\win32\libgcc_s_sjlj-1.dll" />
+    <Content Include="magic\data\win32\libgnurx-0.dll" />
+    <Content Include="magic\data\win32\libmagic-1.dll" />
+    <Content Include="magic\data\win64\libgnurx-0.dll" />
+    <Content Include="magic\data\win64\libmagic-1.dll" />
     <Content Include="MANIFEST.in" />
     <Content Include="pytest.ini" />
     <Content Include="README.md" />
@@ -63,26 +57,6 @@
     <Folder Include="magic\test\data\" />
     <Folder Include="magic\data\win64\" />
     <Folder Include="magic\data\win32\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Interpreter Include="env32\">
-      <Id>env32</Id>
-      <Version>3.6</Version>
-      <Description>env32 (Python 3.6 (32-bit))</Description>
-      <InterpreterPath>Scripts\python.exe</InterpreterPath>
-      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
-      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
-      <Architecture>X86</Architecture>
-    </Interpreter>
-    <Interpreter Include="env64\">
-      <Id>env64</Id>
-      <Version>3.6</Version>
-      <Description>env64 (Python 3.6 (64-bit))</Description>
-      <InterpreterPath>Scripts\python.exe</InterpreterPath>
-      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
-      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
-      <Architecture>X64</Architecture>
-    </Interpreter>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
 </Project>

@@ -26,7 +26,7 @@ def find_magic():
         lp = windows_path()
         if os.path.exists(lp):
             system_path = lp
-            library_path = ['magic1.dll']
+            library_path = ['libmagic-1.dll']
     elif _platform == 'cygwin':
         library_path = ['cygmagic-1.dll']
     elif _platform == 'darwin':
@@ -41,12 +41,14 @@ def find_magic():
         library_path = ['libmagic.so.1']
     if not library_path:
         raise ImportError("Platform not supported")
+    print(library_path)
+    print(system_path)
     for dll in library_path:
         try:
             with extend_path(system_path):
                 return ctypes.CDLL(dll)
-        except OSError:
-            pass
+        except OSError as err:
+            print(err)
     raise ImportError('failed to find libmagic.  Check your installation')
 
 libmagic = find_magic()
