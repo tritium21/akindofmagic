@@ -75,7 +75,7 @@ def coerce_filename(filename):
         return None
     is_unicode = isinstance(filename, unicode)
     if is_unicode:
-        return filename.encode('utf-8')
+        return filename.encode('utf-8', 'surrogateescape')
     return filename
 
 magic_open = libmagic.magic_open

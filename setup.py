@@ -11,7 +11,7 @@ setup(
     maintainer='Alex Walters',
     maintainer_email='tritium@sdamon.com',
     url="http://github.com/tritium21/akindofmagic",
-    version='0.4.19',
+    version='0.4.21',
     packages=find_packages(),
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],

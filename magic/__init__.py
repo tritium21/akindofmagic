@@ -44,7 +44,6 @@ class Magic:
         mime_encoding - if True, codec is returned
         magic_file - use a mime database other than the system default
         keep_going - don't stop at the first match, keep going
-        uncompress - Try to look inside compressed files.
         """
         self.flags = lm.MAGIC_NONE
         if mime:
@@ -53,9 +52,6 @@ class Magic:
             self.flags |= lm.MAGIC_MIME_ENCODING
         if keep_going:
             self.flags |= lm.MAGIC_CONTINUE
-
-        if uncompress:
-            self.flags |= lm.MAGIC_COMPRESS
 
         self.cookie = lm.magic_open(self.flags)
         self.lock = threading.Lock()
@@ -70,6 +66,11 @@ class Magic:
         """
         with self.lock:  #pylint: disable-msg=not-context-manager
             try:
+                # if we're on python3, convert buf to bytes
+                # otherwise this string is passed as wchar*
+                # which is not what libmagic expects
+                if type(buffer) == str and str != bytes:
+                   buffer = buffer.encode('utf-8', errors='replace')
                 return maybe_decode(lm.magic_buffer(self.cookie, buffer))
             except MagicException as e:
                 return self._handle509Bug(e)
