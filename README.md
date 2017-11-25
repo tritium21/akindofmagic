@@ -27,21 +27,6 @@ encoding detection.  This is not recommended for general use.  In
 particular, it's not safe for sharing across multiple threads and
 will fail throw if this is attempted.
 
-```python
->>> f = magic.Magic(uncompress=True)
->>> f.from_file('testdata/test.gz')
-'ASCII text (gzip compressed data, was "test", last modified: Sat Jun 28
-21:32:52 2008, from Unix)'
-```
-
-You can also combine the flag options:
-
-```python
->>> f = magic.Magic(mime=True, uncompress=True)
->>> f.from_file('testdata/test.gz')
-'text/plain'
-```
-
 ### Dependencies
 
 On OSX:
