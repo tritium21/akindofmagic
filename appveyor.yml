@@ -11,3 +11,7 @@ environment:
 build: off
 test_script:
   - "%PYTHON%\\python.exe setup.py test"
+skip_commits:
+  files:
+	- .travis.yml
+	- README.md
