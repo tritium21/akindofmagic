@@ -28,6 +28,11 @@ particular, it's not safe for sharing across multiple threads and
 will fail throw if this is attempted.
 
 ### Dependencies
+On Windows:
+
+- None.  That's the point of this fork - the Windows DLLs are provided.
+  They are built with instructions modified from
+  [nscaife/file-windows](https://github.com/nscaife/file-windows)
 
 On OSX:
 
@@ -46,6 +51,9 @@ On OSX:
 Originally written by Adam Hupp in 2001 for a project that never got off the
 ground.  It originally used SWIG for the C library bindings, but
 switched to ctypes once that was part of the python standard library.
+
+This fork was largely refactored by Alexander Walters from code found at
+[ahupp/python-magic](https://github.com/ahupp/python-magic).
 
 ## License
 

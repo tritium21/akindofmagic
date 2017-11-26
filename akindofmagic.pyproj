@@ -38,12 +38,6 @@
     <Content Include=".travis.yml" />
     <Content Include="appveyor.yml" />
     <Content Include="LICENSE" />
-    <Content Include="magic\data\magic.mgc" />
-    <Content Include="magic\data\win32\libgcc_s_sjlj-1.dll" />
-    <Content Include="magic\data\win32\libgnurx-0.dll" />
-    <Content Include="magic\data\win32\libmagic-1.dll" />
-    <Content Include="magic\data\win64\libgnurx-0.dll" />
-    <Content Include="magic\data\win64\libmagic-1.dll" />
     <Content Include="MANIFEST.in" />
     <Content Include="pytest.ini" />
     <Content Include="README.md" />
@@ -51,11 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="magic\" />
-    <Folder Include="magic\data\" />
     <Folder Include="magic\test\" />
     <Folder Include="magic\test\data\" />
-    <Folder Include="magic\data\win64\" />
-    <Folder Include="magic\data\win32\" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">
