@@ -41,7 +41,7 @@ class TestMagic(unittest.TestCase):
         expected = 'gzip compressed data, was "test.txt"'
         actual = m.from_file(TEST_GZIP)
         print(actual)
-        self.assertTrue(actual.startswith(expected))
+        self.assertTrue(expected in actual)
 
 
 if __name__ == '__main__':
