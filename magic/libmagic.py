@@ -41,8 +41,6 @@ def find_magic():
         library_path = ['libmagic.so.1']
     if not library_path:
         raise ImportError("Platform not supported")
-    print(library_path)
-    print(system_path)
     for dll in library_path:
         try:
             with extend_path(system_path):

@@ -4,7 +4,10 @@ import io
 
 import magic
 
-TEST_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'test.zip')
+ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
+
+TEST_FILE = os.path.join(ROOT, 'test.zip')
+TEST_GZIP = os.path.join(ROOT, 'test.txt.gz')
 
 class TestMagic(unittest.TestCase):
     def test_from_file_mime(self):
@@ -28,6 +31,13 @@ class TestMagic(unittest.TestCase):
         with io.open(TEST_FILE, 'br') as f:
             actual = magic.from_buffer(f.read())
         self.assertTrue(actual.startswith(expected))
+
+    def test_uncompress(self):
+        m = magic.Magic(uncompress=True)
+        expected = 'gzip compressed data, was "test.txt"'
+        actual = m.from_file(TEST_GZIP)
+        self.assertTrue(actual.startswith(expected))
+
 
 if __name__ == '__main__':
     unittest.main()

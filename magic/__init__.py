@@ -52,6 +52,8 @@ class Magic:
             self.flags |= lm.MAGIC_MIME_ENCODING
         if keep_going:
             self.flags |= lm.MAGIC_CONTINUE
+        if uncompress:
+            self.flags |= lm.MAGIC_COMPRESS
 
         self.cookie = lm.magic_open(self.flags)
         self.lock = threading.Lock()
